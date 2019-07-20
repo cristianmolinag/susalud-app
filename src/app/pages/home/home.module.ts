@@ -10,7 +10,17 @@ import { HomePage } from './home.page';
 const routes: Routes = [
   {
     path: '',
-    component: HomePage
+    component: HomePage,
+    children: [
+      {
+        path: 'login',
+        loadChildren: '../login/login.module#LoginPageModule'
+      },
+      {
+        path: 'registro',
+        loadChildren: '../registro/registro.module#RegistroPageModule'
+      }
+    ]
   }
 ];
 
@@ -23,4 +33,4 @@ const routes: Routes = [
   ],
   declarations: [HomePage]
 })
-export class HomePageModule {}
+export class HomePageModule { }

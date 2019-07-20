@@ -1,9 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-grid>
+      <ion-row justify-content-center align-items-center style="height: 100%">
+        <img src="assets/imagenes/logo.jpg" />
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="login">
+        <ion-label>Login</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="registro">
+        <ion-label>Registro</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

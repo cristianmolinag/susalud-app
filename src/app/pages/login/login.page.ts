@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AppService } from 'src/app/services/app.service';
+import { NavController } from '@ionic/angular';
 
 
 @Component({
@@ -11,25 +13,30 @@ export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private appService: AppService) {
 
     this.loginForm = this.formBuilder.group({
-      documento: new FormControl('', Validators.compose([
+      correo: new FormControl('', Validators.compose([
         Validators.required,
         Validators.minLength(8),
-        Validators.maxLength(10),
-        Validators.pattern('[0-9]+')
+        Validators.maxLength(50),
+        Validators.email
       ])),
       password: new FormControl('', Validators.compose([
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(50),
-        Validators.pattern('^[a-zA-Z0-9_.-]*$')
+        Validators.maxLength(50)
       ]))
     });
   }
 
   ngOnInit() {
+  }
+
+  login() {
+    this.appService.post('/login', this.loginForm.value).then((data: any) => {
+      console.log('data: ', data);
+    });
   }
 
 }
