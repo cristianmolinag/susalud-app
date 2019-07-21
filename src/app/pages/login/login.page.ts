@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AppService } from 'src/app/services/app.service';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,8 @@ export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private appService: AppService) {
+  constructor(private formBuilder: FormBuilder, private appService: AppService,
+              private toastCtrl: ToastController, private router: Router) {
 
     this.loginForm = this.formBuilder.group({
       correo: new FormControl('', Validators.compose([
@@ -33,9 +35,14 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  login() {
-    this.appService.post('/login', this.loginForm.value).then((data: any) => {
-      console.log('data: ', data);
+  async login() {
+    this.appService.post('/login', this.loginForm.value).then(async (data: any) => {
+      const toast = await this.toastCtrl.create({
+        message: `Bienvendio ${data.nombres}`,
+        duration: 2000
+      });
+      toast.present();
+      this.router.navigate(['productos']);
     });
   }
 
