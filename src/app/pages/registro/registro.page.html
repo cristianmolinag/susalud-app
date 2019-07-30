@@ -1,81 +1,85 @@
-<ion-content padding>
+<ion-content style="top: 20px">
 
-  <form [formGroup]="formGroup" (ngSubmit)="registro()">
-    <ion-grid fixed>
-      <ion-row>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">Nombres</ion-label>
-            <ion-input type="text" formControlName="nombres"></ion-input>
-          </ion-item>
-          <div *ngIf="formGroup.controls['nombres'].touched && !formGroup.controls['nombres'].valid">
-            <ion-text color="danger">
-              <small *ngIf="formGroup.controls['nombres'].hasError('required')">
-                El campo es requerido
-              </small>
-              <small
-                *ngIf="formGroup.controls['nombres'].hasError('pattern') || formGroup.controls['nombres'].hasError('minlength') || formGroup.controls['nombres'].hasError('maxlength')">
-                Valores no válidos
-              </small>
-            </ion-text>
-          </div>
-        </ion-col>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">Apellidos</ion-label>
-            <ion-input type="text" formControlName="apellidos"></ion-input>
-          </ion-item>
-          <div *ngIf="formGroup.controls['apellidos'].touched && !formGroup.controls['apellidos'].valid">
-            <ion-text color="danger">
-              <small *ngIf="formGroup.controls['apellidos'].hasError('required')">
-                El campo es requerido
-              </small>
-              <small
-                *ngIf="formGroup.controls['apellidos'].hasError('pattern') || formGroup.controls['apellidos'].hasError('minlength') || formGroup.controls['apellidos'].hasError('maxlength')">
-                Valores no válidos
-              </small>
-            </ion-text>
-          </div>
-        </ion-col>
-        <ion-col size="12">
-          <ion-item>
-            <ion-label position="floating">Correo</ion-label>
-            <ion-input type="email" formControlName="correo"></ion-input>
-          </ion-item>
-          <div *ngIf="formGroup.controls['correo'].touched && !formGroup.controls['correo'].valid">
-            <ion-text color="danger">
-              <small *ngIf="formGroup.controls['correo'].hasError('required')">
-                El campo es requerido
-              </small>
-              <small
-                *ngIf="formGroup.controls['correo'].hasError('email') || formGroup.controls['correo'].hasError('minlength') || formGroup.controls['correo'].hasError('maxlength')">
-                Valores no válidos
-              </small>
-            </ion-text>
-          </div>
-        </ion-col>
-        <ion-col size="12">
-          <ion-item>
-            <ion-label position="floating">Contraseña</ion-label>
-            <ion-input type="password" formControlName="password"></ion-input>
-          </ion-item>
-          <div *ngIf="formGroup.controls['password'].touched && !formGroup.controls['password'].valid">
-            <ion-text color="danger">
-              <small *ngIf="formGroup.controls['password'].hasError('required')">
-                El campo es requerido
-              </small>
-              <small
-                *ngIf="formGroup.controls['password'].hasError('minlength') || formGroup.controls['password'].hasError('maxlength')">
-                Valores no válidos
-              </small>
-            </ion-text>
-          </div>
-        </ion-col>
-        <ion-col size="12">
-          <ion-button type="submit" shape="round" expand="block" [disabled]="!formGroup.valid">Guardar</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-card color="light">
+    <ion-card-content>
+      <form [formGroup]="formGroup" (ngSubmit)="registro()">
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="6">
+              <ion-item color="light">
+                <ion-label position="stacked" color="primary">Nombres</ion-label>
+                <ion-input type="text" formControlName="nombres" color="medium"></ion-input>
+              </ion-item>
+              <div *ngIf="formGroup.controls['nombres'].touched && !formGroup.controls['nombres'].valid">
+                <ion-text color="danger">
+                  <small *ngIf="formGroup.controls['nombres'].hasError('required')">
+                    El campo es requerido
+                  </small>
+                  <small
+                    *ngIf="formGroup.controls['nombres'].hasError('pattern') || formGroup.controls['nombres'].hasError('minlength') || formGroup.controls['nombres'].hasError('maxlength')">
+                    Valores no válidos
+                  </small>
+                </ion-text>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item color="light">
+                <ion-label position="stacked" color="primary">Apellidos</ion-label>
+                <ion-input type="text" formControlName="apellidos" color="medium"></ion-input>
+              </ion-item>
+              <div *ngIf="formGroup.controls['apellidos'].touched && !formGroup.controls['apellidos'].valid">
+                <ion-text color="danger">
+                  <small *ngIf="formGroup.controls['apellidos'].hasError('required')">
+                    El campo es requerido
+                  </small>
+                  <small
+                    *ngIf="formGroup.controls['apellidos'].hasError('pattern') || formGroup.controls['apellidos'].hasError('minlength') || formGroup.controls['apellidos'].hasError('maxlength')">
+                    Valores no válidos
+                  </small>
+                </ion-text>
+              </div>
+            </ion-col>
+            <ion-col size="12">
+              <ion-item color="light">
+                <ion-label position="stacked" color="primary">Correo</ion-label>
+                <ion-input type="email" formControlName="correo" color="medium"></ion-input>
+              </ion-item>
+              <div *ngIf="formGroup.controls['correo'].touched && !formGroup.controls['correo'].valid">
+                <ion-text color="danger">
+                  <small *ngIf="formGroup.controls['correo'].hasError('required')">
+                    El campo es requerido
+                  </small>
+                  <small
+                    *ngIf="formGroup.controls['correo'].hasError('email') || formGroup.controls['correo'].hasError('minlength') || formGroup.controls['correo'].hasError('maxlength')">
+                    Valores no válidos
+                  </small>
+                </ion-text>
+              </div>
+            </ion-col>
+            <ion-col size="12">
+              <ion-item color="light">
+                <ion-label position="stacked" color="primary">Contraseña</ion-label>
+                <ion-input type="password" formControlName="password" color="medium"></ion-input>
+              </ion-item>
+              <div *ngIf="formGroup.controls['password'].touched && !formGroup.controls['password'].valid">
+                <ion-text color="danger">
+                  <small *ngIf="formGroup.controls['password'].hasError('required')">
+                    El campo es requerido
+                  </small>
+                  <small
+                    *ngIf="formGroup.controls['password'].hasError('minlength') || formGroup.controls['password'].hasError('maxlength')">
+                    Valores no válidos
+                  </small>
+                </ion-text>
+              </div>
+            </ion-col>
+            <ion-col size="12">
+              <ion-button type="submit" shape="round" expand="block" [disabled]="!formGroup.valid">Guardar</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
 
-  </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

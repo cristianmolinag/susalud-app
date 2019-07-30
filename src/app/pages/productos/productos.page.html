@@ -1,9 +1,79 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>productos</ion-title>
+  <ion-toolbar color="warning">
+    <ion-title>Productos</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back" defaultHref="categorias"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<ion-toolbar>
+  <ion-searchbar placeholder="Buscar..." animated></ion-searchbar>
+</ion-toolbar>
 
 <ion-content>
 
+
+  <ion-list>
+    <ion-item-sliding>
+      <ion-item>
+        <div class="pins">
+          <div class="pin" *ngFor="let producto of productos">
+            <ion-card>
+              <img src="{{ urlImages + producto.imagen }}" alt="foto">
+              <ion-card-content>
+                <ion-text color="tertiary">
+                  <h2 class="ion-text-center"><strong> {{ producto.precio | currency }} </strong></h2>
+                </ion-text>
+                <ion-text color="dark">
+                  <h4 class="ion-text-uppercase ion-text-center"><strong> {{ producto.articulo. nombre }} </strong>
+                  </h4>
+                </ion-text>
+                <p><strong>Color:</strong> {{ producto.color.nombre }}</p>
+                <p><strong>Talla:</strong> {{ producto.talla.nombre }}</p>
+                <p><strong>Material:</strong> {{ producto.material.nombre }}</p>
+              </ion-card-content>
+              <ion-footer>
+                <ion-toolbar color="tertiary" class="ion-text-center">
+                  <h5 class="ion-text-uppercase">Comprar</h5>
+                </ion-toolbar>
+              </ion-footer>
+            </ion-card>
+          </div>
+        </div>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+  <!-- <ion-list>
+    <ion-item-sliding>
+      <ion-item>
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="6" *ngFor="let producto of productos">
+              <ion-card>
+                <img src="{{ urlImages + producto.imagen }}" alt="foto">
+                <ion-card-content>
+                  <ion-text color="tertiary">
+                    <h2 class="ion-text-center"><strong> {{ producto.precio | currency }} </strong></h2>
+                  </ion-text>
+                  <ion-text color="dark">
+                    <h4 class="ion-text-uppercase ion-text-center"><strong> {{ producto.articulo. nombre }} </strong>
+                    </h4>
+                  </ion-text>
+                  <p><strong>Color:</strong> {{ producto.color.nombre }}</p>
+                  <p><strong>Talla:</strong> {{ producto.talla.nombre }}</p>
+                  <p><strong>Material:</strong> {{ producto.material.nombre }}</p>
+                </ion-card-content>
+                <ion-footer>
+                  <ion-toolbar color="tertiary" class="ion-text-center">
+                    <h5 class="ion-text-uppercase">Comprar</h5>
+                  </ion-toolbar>
+                </ion-footer>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list> -->
 </ion-content>

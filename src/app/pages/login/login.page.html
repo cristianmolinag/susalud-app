@@ -1,45 +1,53 @@
-  <ion-content padding style="top: 50px">
+<ion-content style="top: 20px">
 
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <div>
-      <ion-item>
-        <ion-label position="floating">Correo</ion-label>
-        <ion-input type="email" formControlName="correo"></ion-input>
-      </ion-item>
-      <div *ngIf="loginForm.controls['correo'].touched && !loginForm.controls['correo'].valid">
-        <ion-text color="danger">
-          <small *ngIf="loginForm.controls['correo'].hasError('required')">
-            El campo es requerido
-          </small>
-          <small
-            *ngIf="loginForm.controls['correo'].hasError('email') || loginForm.controls['correo'].hasError('minlength') || loginForm.controls['correo'].hasError('maxlength')">
-            Valores no válidos
-          </small>
-        </ion-text>
-      </div>
-    </div>
+  <ion-card color="light">
+    <ion-card-content>
 
-    <div>
-      <ion-item>
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" formControlName="password"></ion-input>
-      </ion-item>
-      <div *ngIf="loginForm.controls['password'].touched && !loginForm.controls['password'].valid">
-        <ion-text color="danger">
-          <small *ngIf="loginForm.controls['password'].hasError('required') ">
-            El campo es requerido
-          </small>
-          <small
-            *ngIf="loginForm.controls['password'].hasError('pattern') || loginForm.controls['password'].hasError('minlength') || loginForm.controls['password'].hasError('maxlength')">
-            Valores no válidos
-          </small>
-        </ion-text>
-      </div>
-    </div>
 
-    <div padding>
-      <ion-button type="submit" shape="round" expand="block" [disabled]="!loginForm.valid">Iniciar sesión</ion-button>
-    </div>
-  </form>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div>
+          <ion-item color="light">
+            <ion-label position="stacked" color="primary">Correo</ion-label>
+            <ion-input type="email" formControlName="correo" color="medium"></ion-input>
+          </ion-item>
+          <div *ngIf="loginForm.controls['correo'].touched && !loginForm.controls['correo'].valid">
+            <ion-text color="danger">
+              <small *ngIf="loginForm.controls['correo'].hasError('required')">
+                El campo es requerido
+              </small>
+              <small
+                *ngIf="loginForm.controls['correo'].hasError('email') || loginForm.controls['correo'].hasError('minlength') || loginForm.controls['correo'].hasError('maxlength')">
+                Valores no válidos
+              </small>
+            </ion-text>
+          </div>
+        </div>
+
+        <div>
+          <ion-item color="light">
+            <ion-label position="stacked" color="primary">Contraseña</ion-label>
+            <ion-input type="password" formControlName="password" color="medium"></ion-input>
+          </ion-item>
+          <div *ngIf="loginForm.controls['password'].touched && !loginForm.controls['password'].valid">
+            <ion-text color="danger">
+              <small *ngIf="loginForm.controls['password'].hasError('required') ">
+                El campo es requerido
+              </small>
+              <small
+                *ngIf="loginForm.controls['password'].hasError('pattern') || loginForm.controls['password'].hasError('minlength') || loginForm.controls['password'].hasError('maxlength')">
+                Valores no válidos
+              </small>
+            </ion-text>
+          </div>
+        </div>
+
+        <div padding>
+          <ion-button type="submit" shape="round" expand="block" [disabled]="!loginForm.valid">Iniciar sesión
+          </ion-button>
+        </div>
+      </form>
+
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
