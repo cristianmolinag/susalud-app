@@ -53,7 +53,8 @@ export class RegistroPage implements OnInit {
         duration: 2000
       });
       toast.present();
-      this.router.navigate(['productos']);
+      this.appService.setClienteID(data.id);
+      this.router.navigate(['categorias']);
     });
   }
 }

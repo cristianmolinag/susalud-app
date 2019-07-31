@@ -72,4 +72,5 @@ export interface Producto {
     material: Material;
     created_at?: Date;
     updated_at?: Date;
+    estado_pedido?: string;
 }
