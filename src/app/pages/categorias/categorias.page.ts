@@ -9,10 +9,12 @@ import { Categoria } from './../../interfaces/app';
 })
 export class CategoriasPage implements OnInit {
 
+  urlImages: string;
   categorias: Categoria[];
   colores: string[] = ['primary', 'secondary', 'tertiary', 'success', 'danger', 'light', 'medium', 'dark'];
 
   constructor(private appService: AppService, private router: Router) {
+    this.urlImages = appService.urlImages;
     this.getCategorias();
   }
 
@@ -29,6 +31,12 @@ export class CategoriasPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  buscar(event) {
+    console.log(event.detail.value.toLowerCase());
+    this.categorias.filter(categoria => (categoria.nombre.toLowerCase().includes(event.detail.value.toLowerCase()));
+    );
   }
 
 }

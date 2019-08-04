@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AppService } from 'src/app/services/app.service';
-import { NavController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private appService: AppService,
-              private toastCtrl: ToastController, private router: Router) {
+              private toastCtrl: ToastController, private router: Router,
+              private storage: Storage) {
 
     this.loginForm = this.formBuilder.group({
       correo: new FormControl('', Validators.compose([
@@ -42,7 +44,7 @@ export class LoginPage implements OnInit {
         duration: 2000
       });
       toast.present();
-      this.appService.setClienteID(data.id);
+      this.storage.set('cliente_id', data.id);
       this.router.navigate(['categorias']);
     });
   }

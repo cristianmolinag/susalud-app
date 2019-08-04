@@ -40,7 +40,7 @@ export class ProductosPage implements OnInit {
 
   async getPedidos() {
     return new Promise((resolve) => {
-      this.appService.get('/get_mis_pedidos/2').then((data: any) => {
+      this.appService.get(`/get_mis_pedidos/${this.appService.getClienteID()}`).then((data: any) => {
         resolve(data);
       });
     });
@@ -113,7 +113,7 @@ export class ProductosPage implements OnInit {
             handler: (alertData) => {
               this.appService.post('/crear_pedido', {
                 'producto_id': producto.id,
-                'cliente_id': 2, //this.appService.getClienteID(),
+                'cliente_id': this.appService.getClienteID(),
                 'observaciones': alertData.observaciones
               })
                 .then(async (data: any) => {

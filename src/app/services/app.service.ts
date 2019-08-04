@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
-import { resolve } from 'q';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,6 @@ export class AppService {
   // apiUrl = 'https://susalud-admin.herokuapp.com/app'; // cambiar la IP por la nueva
   apiUrl = 'http://susalud-admin.test'; // cambiar la IP por la nueva
   urlImages = `${this.apiUrl}/imagenes/productos/`;
-  cliente_id: number;
 
   constructor(private httpClient: HttpClient, private toastCtrl: ToastController) {
   }
@@ -52,13 +50,5 @@ export class AppService {
       duration: 2000
     });
     toast.present();
-  }
-
-  setClienteID(cliente_id: number) {
-    this.cliente_id = cliente_id;
-  }
-
-  getClienteID() {
-    return this.cliente_id;
   }
 }
