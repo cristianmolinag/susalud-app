@@ -4,6 +4,8 @@ import { AppService } from 'src/app/services/app.service';
 import { Producto } from 'src/app/interfaces/app';
 import { AlertController, ToastController } from '@ionic/angular';
 
+import { Storage } from '@ionic/storage';
+
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.page.html',
@@ -13,41 +15,32 @@ export class ProductosPage implements OnInit {
 
   urlImages: string;
   productos: Producto[];
+  cliente_id: number;
 
   constructor(private route: ActivatedRoute, private appService: AppService,
-    private alertCtrl: AlertController, private toastCtrl: ToastController) {
-    this.urlImages = appService.urlImages;
+              private alertCtrl: AlertController, private toastCtrl: ToastController,
+              private storage: Storage, private router: Router) {
 
-    this.getProductos();
-    // this.getProductos().then((data: any) => {
-    //   if (!!data.data) {
-    //     this.productos = data.data;
-    //     this.getPedidos().then((data: any) => {
-    //       data.forEach(element => {
-    //         const index = this.productos.findIndex(x => x.id === element.id);
-    //         this.productos[index].estado_pedido = 'Pedido';
-
-    //         this.productos.forEach(el => {
-    //           if (el.estado_pedido !== 'Pedido') {
-    //             el.estado_pedido = 'Comprar';
-    //           }
-    //         });
-    //       });
-    //     });
-    //   }
-    // });
+    this.storage.get('cliente_id').then((val) => {
+      if (val) {
+        this.urlImages = appService.urlImages;
+        this.getProductos();
+        this.cliente_id = val;
+      } else {
+        this.router.navigate(['home']);
+      }
+    });
   }
 
   async getPedidos() {
     return new Promise((resolve) => {
-      this.appService.get(`/get_mis_pedidos/${this.appService.getClienteID()}`).then((data: any) => {
+      this.appService.get(`/get_mis_pedidos/${this.cliente_id}`).then((data: any) => {
         resolve(data);
       });
     });
   }
 
   async getProductos() {
-    // return new Promise((resolve) => {
     this.route.paramMap.subscribe(params => {
       if (params.has('id')) {
         this.appService.get(`/get_productos/${params.get('id')}`).then((data: any) => {
@@ -69,7 +62,6 @@ export class ProductosPage implements OnInit {
         });
       }
     });
-    // });
   }
 
   ngOnInit() {
@@ -111,10 +103,11 @@ export class ProductosPage implements OnInit {
           }, {
             text: 'Aceptar',
             handler: (alertData) => {
-              this.appService.post('/crear_pedido', {
-                'producto_id': producto.id,
-                'cliente_id': this.appService.getClienteID(),
-                'observaciones': alertData.observaciones
+              this.appService.post('/crear_pedido',
+              {
+                producto_id: producto.id,
+                cliente_id: this.cliente_id,
+                observaciones: alertData.observaciones
               })
                 .then(async (data: any) => {
                   const toast = await this.toastCtrl.create({

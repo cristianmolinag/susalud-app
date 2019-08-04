@@ -35,8 +35,7 @@ export class CategoriasPage implements OnInit {
 
   buscar(event) {
     console.log(event.detail.value.toLowerCase());
-    this.categorias.filter(categoria => (categoria.nombre.toLowerCase().includes(event.detail.value.toLowerCase()));
-    );
+    // this.categorias.filter(categoria => (categoria.nombre.toLowerCase().includes(event.detail.value.toLowerCase())));
   }
 
 }
