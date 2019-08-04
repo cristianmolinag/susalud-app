@@ -41,6 +41,26 @@ export class RegistroPage implements OnInit {
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(8)
+      ])),
+      documento: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10)
+      ])),
+      direccion: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(50)
+      ])),
+      cod_postal: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(8)
+      ])),
+      telefono: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(7),
+        Validators.maxLength(10)
       ]))
     });
    }

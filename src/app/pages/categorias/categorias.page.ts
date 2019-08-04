@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
 import { Router } from '@angular/router';
 import { Categoria } from './../../interfaces/app';
+import { Storage } from '@ionic/storage';
+
 @Component({
   selector: 'app-categorias',
   templateUrl: './categorias.page.html',
@@ -13,7 +15,7 @@ export class CategoriasPage implements OnInit {
   categorias: Categoria[];
   colores: string[] = ['primary', 'secondary', 'tertiary', 'success', 'danger', 'light', 'medium', 'dark'];
 
-  constructor(private appService: AppService, private router: Router) {
+  constructor(private appService: AppService, private router: Router, private storage: Storage) {
     this.urlImages = appService.urlImgCategorias;
     this.getCategorias();
   }
@@ -30,6 +32,7 @@ export class CategoriasPage implements OnInit {
   }
 
   seleccion(categoria: Categoria) {
+    // this.storage.remove('cliente_id').then();
     this.router.navigate([`categorias/${categoria.id}/productos`]);
   }
 
