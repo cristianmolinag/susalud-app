@@ -21,13 +21,13 @@ export class RegistroPage implements OnInit {
     this.formGroup = this.formBuilder.group({
       nombres: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.minLength(6),
+        Validators.minLength(3),
         Validators.maxLength(50),
         Validators.pattern('^[A-Za-z -]+$')
       ])),
       apellidos: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.minLength(6),
+        Validators.minLength(3),
         Validators.maxLength(50),
         Validators.pattern('^[A-Za-z -]+$')
       ])),

@@ -8,8 +8,9 @@ import { ToastController } from '@ionic/angular';
 export class AppService {
 
   // apiUrl = 'https://susalud-admin.herokuapp.com/app'; // cambiar la IP por la nueva
-  apiUrl = 'http://susalud-admin.test'; // cambiar la IP por la nueva
-  urlImages = `${this.apiUrl}/imagenes/productos/`;
+  apiUrl = 'http://susalud-admin.test'; // cambiar la IP por la nueva  
+  urlImgProductos = `${this.apiUrl}/imagenes/productos/`;
+  urlImgCategorias = `${this.apiUrl}/imagenes/categorias/`;
 
   constructor(private httpClient: HttpClient, private toastCtrl: ToastController) {
   }

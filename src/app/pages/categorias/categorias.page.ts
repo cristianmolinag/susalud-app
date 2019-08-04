@@ -14,15 +14,18 @@ export class CategoriasPage implements OnInit {
   colores: string[] = ['primary', 'secondary', 'tertiary', 'success', 'danger', 'light', 'medium', 'dark'];
 
   constructor(private appService: AppService, private router: Router) {
-    this.urlImages = appService.urlImages;
+    this.urlImages = appService.urlImgCategorias;
     this.getCategorias();
   }
 
   getCategorias() {
-    this.appService.get('/get_categorias').then(async (data: any) => {
-      if (!!data.data) {
-        this.categorias = data.data;
-      }
+    return new Promise((resolve) => {
+      this.appService.get('/get_categorias').then(async (data: any) => {
+        if (!!data.data) {
+          this.categorias = data.data;
+        }
+      });
+      return resolve();
     });
   }
 
@@ -33,9 +36,14 @@ export class CategoriasPage implements OnInit {
   ngOnInit() {
   }
 
-  buscar(event) {
+  buscar(event: any) {
     console.log(event.detail.value.toLowerCase());
-    // this.categorias.filter(categoria => (categoria.nombre.toLowerCase().includes(event.detail.value.toLowerCase())));
+  }
+
+  refrescar(event: any) {
+    this.getCategorias().then(() => {
+      event.target.complete();
+    });
   }
 
 }

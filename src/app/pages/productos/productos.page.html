@@ -33,7 +33,9 @@
                 <p><strong>Material:</strong> {{ producto.material.nombre }}</p>
               </ion-card-content>
               <ion-footer>
-                <ion-toolbar (click)="crearPedido(producto)" color="{{ producto.estado_pedido === 'Pedido' ? 'danger' : 'tertiary' }}" class="ion-text-center">
+                <ion-ripple-effect></ion-ripple-effect>
+                <ion-toolbar (click)="crearPedido(producto)"
+                  color="{{ producto.estado_pedido === 'Pedido' ? 'danger' : 'tertiary' }}" class="ion-text-center">
                   <h5 class="ion-text-uppercase">{{ producto.estado_pedido }}</h5>
                 </ion-toolbar>
               </ion-footer>

@@ -1,0 +1,58 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>Confirmacion del pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-text color="primary">
+    <h4>Detalles del pedido</h4>
+  </ion-text>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="auto">
+          <img src="{{ urlImageProducto + producto.imagen }}">
+        </ion-col>
+        <ion-col>
+          <p class="ion-text-uppercase ion-text-center"><strong> {{ producto.articulo. nombre }} </strong></p>
+          <p><strong>Color: </strong> {{ producto.color.nombre }}</p>
+          <p><strong>Material: </strong> {{ producto.material.nombre }}</p>
+          <p><strong>Tall: </strong> {{ producto.talla.nombre }}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <ion-item>
+            <ion-label position="stacked">Cantidad</ion-label>
+            <ion-input type="number" [(ngModel)]="cantidad" required></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="stacked">Description</ion-label>
+            <ion-textarea [(ngModel)]="observaciones" placeholder="Ingrese una observacion (opcional)"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button (click)="cancelarPedido()" color="danger">
+          Cancelar
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="confirmarPedido()" color="tertiary">
+          Aceptar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>
