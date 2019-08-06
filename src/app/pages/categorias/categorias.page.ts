@@ -16,6 +16,9 @@ export class CategoriasPage implements OnInit {
   colores: string[] = ['primary', 'secondary', 'tertiary', 'success', 'danger', 'light', 'medium', 'dark'];
 
   constructor(private appService: AppService, private router: Router, private storage: Storage) {
+
+    // this.storage.remove('cliente_id').then();
+
     this.urlImages = appService.urlImgCategorias;
     this.getCategorias();
   }
@@ -32,7 +35,6 @@ export class CategoriasPage implements OnInit {
   }
 
   seleccion(categoria: Categoria) {
-    // this.storage.remove('cliente_id').then();
     this.router.navigate([`categorias/${categoria.id}/productos`]);
   }
 

@@ -1,3 +1,8 @@
 img{
     width: 100px !important;
 }
+
+ion-input, ion-textarea{
+    border: solid 1px grey;
+    border-radius: 5px;
+ }
