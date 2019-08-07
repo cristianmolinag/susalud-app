@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar color="warning">
+      <ion-title>Historico de pedidos</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button icon="arrow-back" defaultHref="categorias"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+  
+    <ion-grid fixed>
+      <ion-row *ngFor="let p of pedidos">
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>{{ p.created_at }}</ion-card-subtitle>
+              <ion-card-title>{{ p.producto.articulo.nombre }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p><strong>Talla: </strong>{{ p.producto.talla.nombre }}</p>
+              <p><strong>Material: </strong>{{ p.producto.material.nomber }}</p>
+              <p><strong>Color: </strong>{{ p.producto.color.nombre }}</p>
+              <p><strong>Estado: </strong> <ion-text color="primary">
+                  <span> {{ p.estado }} </span> 
+              </ion-text> </p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+  
+  
+  </ion-content>

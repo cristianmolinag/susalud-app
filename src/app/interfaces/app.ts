@@ -1,9 +1,9 @@
-export interface Usuario {
+export interface Cliente {
     id: number;
     nombres: string;
     apellidos: string;
     correo: string;
-    password: string;
+    documento: number;
     estado: boolean;
     remember_token?: string;
     created_at?: Date;
@@ -73,4 +73,17 @@ export interface Producto {
     created_at?: Date;
     updated_at?: Date;
     estado_pedido?: string;
+}
+
+export interface Pedido {
+    id: number;
+    cantidad: number;
+    cliente_id: number;
+    cliente: Cliente;
+    producto_id: number;
+    producto: Producto;
+    estado: string;
+    observaciones?: string;
+    created_at?: Date;
+    updated_at?: Date;
 }

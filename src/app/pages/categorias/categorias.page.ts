@@ -3,6 +3,7 @@ import { AppService } from 'src/app/services/app.service';
 import { Router } from '@angular/router';
 import { Categoria } from './../../interfaces/app';
 import { Storage } from '@ionic/storage';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-categorias',
@@ -15,9 +16,11 @@ export class CategoriasPage implements OnInit {
   categorias: Categoria[];
   colores: string[] = ['primary', 'secondary', 'tertiary', 'success', 'danger', 'light', 'medium', 'dark'];
 
-  constructor(private appService: AppService, private router: Router, private storage: Storage) {
+  constructor(private appService: AppService,
+    private router: Router,
+    private storage: Storage,
+    private actionSheetCtrl: ActionSheetController) {
 
-    // this.storage.remove('cliente_id').then();
 
     this.urlImages = appService.urlImgCategorias;
     this.getCategorias();
@@ -49,6 +52,51 @@ export class CategoriasPage implements OnInit {
     this.getCategorias().then(() => {
       event.target.complete();
     });
+  }
+
+  async opcionesUsuario() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Opciones del usuario',
+      buttons: [
+        {
+          text: 'Perfil',
+          icon: 'contact',
+          handler: () => {
+            this.router.navigate(['perfil']);
+          }
+        }, {
+          text: 'Cerrar sesion',
+          icon: 'exit',
+          handler: () => {
+            this.storage.remove('cliente_id').then();
+            this.router.navigate(['home']);
+          }
+        }
+      ]
+    });
+    await actionSheet.present();
+  }
+
+  async opcionesPedidos() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Opciones del pedidos',
+      buttons: [
+        {
+          text: 'Mis pedidos activos',
+          icon: 'card',
+          handler: () => {
+            this.router.navigate(['pedidos-activos']);
+          }
+        }, {
+          text: 'Historico de pedidos',
+          icon: 'calendar',
+          handler: () => {
+            this.router.navigate(['pedidos-historico']);
+          }
+        }
+      ]
+    });
+    await actionSheet.present();
   }
 
 }

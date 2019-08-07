@@ -1,0 +1,145 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>Productos</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back" defaultHref="categorias"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="top: 20px">
+
+    <ion-card color="light">
+      <ion-card-content>
+        <form [formGroup]="formGroup" (ngSubmit)="registro()">
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col size="6">
+                <ion-item color="light">
+                  <ion-label position="stacked" color="primary">Nombres</ion-label>
+                  <ion-input type="text" formControlName="nombres" color="medium"></ion-input>
+                </ion-item>
+                <div *ngIf="formGroup.controls['nombres'].touched && !formGroup.controls['nombres'].valid">
+                  <ion-text color="danger">
+                    <small *ngIf="formGroup.controls['nombres'].hasError('required')">
+                      El campo es requerido
+                    </small>
+                    <small
+                      *ngIf="formGroup.controls['nombres'].hasError('pattern') || formGroup.controls['nombres'].hasError('minlength') || formGroup.controls['nombres'].hasError('maxlength')">
+                      Valores no válidos
+                    </small>
+                  </ion-text>
+                </div>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item color="light">
+                  <ion-label position="stacked" color="primary">Apellidos</ion-label>
+                  <ion-input type="text" formControlName="apellidos" color="medium"></ion-input>
+                </ion-item>
+                <div *ngIf="formGroup.controls['apellidos'].touched && !formGroup.controls['apellidos'].valid">
+                  <ion-text color="danger">
+                    <small *ngIf="formGroup.controls['apellidos'].hasError('required')">
+                      El campo es requerido
+                    </small>
+                    <small
+                      *ngIf="formGroup.controls['apellidos'].hasError('pattern') || formGroup.controls['apellidos'].hasError('minlength') || formGroup.controls['apellidos'].hasError('maxlength')">
+                      Valores no válidos
+                    </small>
+                  </ion-text>
+                </div>
+              </ion-col>
+              <ion-col size="12">
+                <ion-item color="light">
+                  <ion-label position="stacked" color="primary">Correo</ion-label>
+                  <ion-input type="email" formControlName="correo" color="medium"></ion-input>
+                </ion-item>
+                <div *ngIf="formGroup.controls['correo'].touched && !formGroup.controls['correo'].valid">
+                  <ion-text color="danger">
+                    <small *ngIf="formGroup.controls['correo'].hasError('required')">
+                      El campo es requerido
+                    </small>
+                    <small
+                      *ngIf="formGroup.controls['correo'].hasError('email') || formGroup.controls['correo'].hasError('minlength') || formGroup.controls['correo'].hasError('maxlength')">
+                      Valores no válidos
+                    </small>
+                  </ion-text>
+                </div>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item color="light">
+                  <ion-label position="stacked" color="primary">Documento</ion-label>
+                  <ion-input type="number" formControlName="documento" color="medium"></ion-input>
+                </ion-item>
+                <div *ngIf="formGroup.controls['documento'].touched && !formGroup.controls['documento'].valid">
+                  <ion-text color="danger">
+                    <small *ngIf="formGroup.controls['documento'].hasError('required')">
+                      El campo es requerido
+                    </small>
+                    <small
+                      *ngIf="formGroup.controls['documento'].hasError('minlength') || formGroup.controls['documento'].hasError('maxlength')">
+                      Valores no válidos
+                    </small>
+                  </ion-text>
+                </div>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item color="light">
+                  <ion-label position="stacked" color="primary">Dirección</ion-label>
+                  <ion-input type="string" formControlName="direccion" color="medium"></ion-input>
+                </ion-item>
+                <div *ngIf="formGroup.controls['direccion'].touched && !formGroup.controls['direccion'].valid">
+                  <ion-text color="danger">
+                    <small *ngIf="formGroup.controls['direccion'].hasError('required')">
+                      El campo es requerido
+                    </small>
+                    <small
+                      *ngIf="formGroup.controls['direccion'].hasError('minlength') || formGroup.controls['direccion'].hasError('maxlength')">
+                      Valores no válidos
+                    </small>
+                  </ion-text>
+                </div>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item color="light">
+                  <ion-label position="stacked" color="primary">C. Postal</ion-label>
+                  <ion-input type="number" formControlName="cod_postal" color="medium"></ion-input>
+                </ion-item>
+                <div *ngIf="formGroup.controls['cod_postal'].touched && !formGroup.controls['cod_postal'].valid">
+                  <ion-text color="danger">
+                    <small *ngIf="formGroup.controls['cod_postal'].hasError('required')">
+                      El campo es requerido
+                    </small>
+                    <small
+                      *ngIf="formGroup.controls['cod_postal'].hasError('minlength') || formGroup.controls['cod_postal'].hasError('maxlength')">
+                      Valores no válidos
+                    </small>
+                  </ion-text>
+                </div>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item color="light">
+                  <ion-label position="stacked" color="primary">Telefono</ion-label>
+                  <ion-input type="number" formControlName="telefono" color="medium"></ion-input>
+                </ion-item>
+                <div *ngIf="formGroup.controls['telefono'].touched && !formGroup.controls['telefono'].valid">
+                  <ion-text color="danger">
+                    <small *ngIf="formGroup.controls['telefono'].hasError('required')">
+                      El campo es requerido
+                    </small>
+                    <small
+                      *ngIf="formGroup.controls['telefono'].hasError('minlength') || formGroup.controls['telefono'].hasError('maxlength')">
+                      Valores no válidos
+                    </small>
+                  </ion-text>
+                </div>
+              </ion-col>
+              <ion-col size="12">
+                <ion-button type="submit" shape="round" expand="block" [disabled]="!formGroup.valid">Guardar</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </form>
+  
+      </ion-card-content>
+    </ion-card>
+  </ion-content>

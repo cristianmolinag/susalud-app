@@ -1,13 +1,20 @@
 <ion-header>
   <ion-toolbar color="warning">
     <ion-searchbar placeholder="Buscar..." (ionChange)="buscar($event)" debounce="800"></ion-searchbar>
+    <ion-buttons slot="end">
+        <ion-button (click)="opcionesPedidos()">
+            <ion-icon name="cart"></ion-icon>
+          </ion-button>
+      <ion-button (click)="opcionesUsuario()">
+        <ion-icon name="person"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
     <ion-refresher slot="fixed" (ionRefresh)="refrescar($event)">
         <ion-refresher-content></ion-refresher-content>
       </ion-refresher>
-
   <ion-text>
     <h1>Categorías</h1>
   </ion-text>

@@ -16,7 +16,7 @@ export class ProductosPage implements OnInit {
 
   urlImages: string;
   productos: Producto[];
-  cliente_id: number;
+  clienteId: number;
 
   constructor(private route: ActivatedRoute, private appService: AppService,
     private alertCtrl: AlertController, private toastCtrl: ToastController,
@@ -27,7 +27,7 @@ export class ProductosPage implements OnInit {
       if (val) {
         this.urlImages = appService.urlImgProductos;
         this.getProductos();
-        this.cliente_id = val;
+        this.clienteId = val;
       } else {
         this.router.navigate(['home']);
       }
@@ -36,7 +36,7 @@ export class ProductosPage implements OnInit {
 
   async getMisPedidos() {
     return new Promise((resolve) => {
-      this.appService.get(`/get_mis_pedidos/${this.cliente_id}`).then((data: any) => {
+      this.appService.get(`/get_mis_pedidos/${this.clienteId}`).then((data: any) => {
         resolve(data);
       });
     });

@@ -8,6 +8,9 @@ const routes: Routes = [
   { path: 'registro', loadChildren: './pages/registro/registro.module#RegistroPageModule' },
   { path: 'categorias/:id/productos', loadChildren: './pages/productos/productos.module#ProductosPageModule' },
   { path: 'categorias', loadChildren: './pages/categorias/categorias.module#CategoriasPageModule' },
+  { path: 'perfil', loadChildren: './pages/perfil/perfil.module#PerfilPageModule' },
+  { path: 'pedidos-activos', loadChildren: './pages/pedidos-activos/pedidos-activos.module#PedidosActivosPageModule' },
+  { path: 'pedidos-historico', loadChildren: './pages/pedidos-historico/pedidos-historico.module#PedidosHistoricoPageModule' },
 ];
 
 @NgModule({
