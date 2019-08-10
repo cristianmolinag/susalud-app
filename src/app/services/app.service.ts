@@ -7,9 +7,8 @@ import { ToastController } from '@ionic/angular';
 })
 export class AppService {
 
-  apiUrl = 'http://127.0.0.1:8000'; // http://susalud-admin.test -- 'https://susalud-admin.herokuapp.com/app'
+  apiUrl = 'http://susalud-admin.test'; // http://susalud-admin.test -- 'https://susalud-admin.herokuapp.com/app'
   urlImgProductos = `${this.apiUrl}/imagenes/productos/`;
-  urlImgCategorias = `${this.apiUrl}/imagenes/categorias/`;
 
   constructor(private httpClient: HttpClient, private toastCtrl: ToastController) {
   }

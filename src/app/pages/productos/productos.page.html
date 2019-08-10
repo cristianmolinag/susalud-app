@@ -1,48 +1,46 @@
 <ion-header>
   <ion-toolbar color="warning">
-    <ion-title>Productos</ion-title>
-    <ion-buttons slot="start">
-      <ion-back-button icon="arrow-back" defaultHref="categorias"></ion-back-button>
+    <ion-searchbar placeholder="Buscar..." (ionChange)="buscar($event)" debounce="800"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="opcionesPedidos()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+      <ion-button (click)="opcionesUsuario()">
+        <ion-icon name="person"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-toolbar>
-  <ion-searchbar placeholder="Buscar..." animated></ion-searchbar>
-</ion-toolbar>
-
 <ion-content>
 
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6" *ngFor="let producto of productos">
+          <ion-card>
+            <ion-grid>  
+              <ion-row justify-content-center align-items-center style="height: 100%">
+                  <img src="{{ urlImages + producto.imagen }}" alt="foto">
+              </ion-row>
+            </ion-grid>
+            <ion-card-content>
+              <ion-text color="tertiary">
+                <h2 class="ion-text-center"><strong> {{ producto.precio | currency }} </strong></h2>
+              </ion-text>
+              <ion-text color="dark">
+                <h4 class="ion-text-uppercase ion-text-center"><strong> {{ producto.nombre }} </strong>
+                </h4>
+              </ion-text>
+              <p><strong>Material:</strong> {{ producto.material.nombre }}</p>
+            </ion-card-content>
+            <ion-footer>
+              <ion-ripple-effect></ion-ripple-effect>
+              <ion-toolbar (click)="crearPedido(producto)" class="ion-text-center" color="primary">
+                <h5 class="ion-text-uppercase">Comprar</h5>
+              </ion-toolbar>
+            </ion-footer>
+          </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <ion-list>
-    <ion-item-sliding>
-      <ion-item>
-        <div class="pins">
-          <div class="pin" *ngFor="let producto of productos">
-            <ion-card>
-              <img src="{{ urlImages + producto.imagen }}" alt="foto">
-              <ion-card-content>
-                <ion-text color="tertiary">
-                  <h2 class="ion-text-center"><strong> {{ producto.precio | currency }} </strong></h2>
-                </ion-text>
-                <ion-text color="dark">
-                  <h4 class="ion-text-uppercase ion-text-center"><strong> {{ producto.articulo. nombre }} </strong>
-                  </h4>
-                </ion-text>
-                <p><strong>Color:</strong> {{ producto.color.nombre }}</p>
-                <p><strong>Talla:</strong> {{ producto.talla.nombre }}</p>
-                <p><strong>Material:</strong> {{ producto.material.nombre }}</p>
-              </ion-card-content>
-              <ion-footer>
-                <ion-ripple-effect></ion-ripple-effect>
-                <ion-toolbar (click)="crearPedido(producto)"
-                  color="{{ producto.estado_pedido === 'Pedido' ? 'danger' : 'tertiary' }}" class="ion-text-center">
-                  <h5 class="ion-text-uppercase">{{ producto.estado_pedido }}</h5>
-                </ion-toolbar>
-              </ion-footer>
-            </ion-card>
-          </div>
-        </div>
-      </ion-item>
-    </ion-item-sliding>
-  </ion-list>
 </ion-content>

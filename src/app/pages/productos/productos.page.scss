@@ -9,9 +9,13 @@ ion-item {
     --padding-start: 0px;
     --border-style: none;
 }
-// img{
-//     max-height: 150px;
-// }
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    max-height: 120px;
+}
 
 .pins{
     column-count: 2;

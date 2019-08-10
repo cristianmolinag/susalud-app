@@ -5,15 +5,27 @@
   </ion-text>
   <ion-card>
     <ion-grid>
+      <ion-row justify-content-center align-items-center style="height: 100%">
+        <img src="{{ urlImageProducto + producto.imagen }}">
+      </ion-row>
       <ion-row>
-        <ion-col size="auto">
-          <img src="{{ urlImageProducto + producto.imagen }}">
-        </ion-col>
         <ion-col>
-          <p class="ion-text-uppercase ion-text-center"><strong> {{ producto.articulo. nombre }} </strong></p>
-          <p><strong>Color: </strong> {{ producto.color.nombre }}</p>
-          <p><strong>Material: </strong> {{ producto.material.nombre }}</p>
-          <p><strong>Tall: </strong> {{ producto.talla.nombre }}</p>
+          <ion-item lines="none">
+            <ion-label position="fixed">Talla: </ion-label>
+            <ion-select placeholder="Seleccione una talla" [(ngModel)]="talla_id">
+                <ion-select-option *ngFor="let talla of producto.tallas" [value]="talla.id">{{ talla.nombre }}</ion-select-option>
+              </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label position="fixed">Color: </ion-label>
+            <ion-select placeholder="Seleccione un color" [(ngModel)]="color_id">
+              <ion-select-option *ngFor="let color of producto.colores" [value]="color.id">{{ color.nombre }}</ion-select-option>
+            </ion-select>
+          </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -28,28 +40,41 @@
         <ion-col>
           <ion-item lines="none">
             <ion-label position="fixed">Description: </ion-label>
-            <ion-textarea [(ngModel)]="observaciones" placeholder="Ingrese una observacion (opcional)" rows="6" cols="20"></ion-textarea>
+            <ion-textarea [(ngModel)]="observaciones" placeholder="Ingrese una observacion (opcional)" rows="6"
+              cols="20"></ion-textarea>
           </ion-item>
         </ion-col>
       </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="fixed">Valor total: </ion-label>
+            <ion-text color="success">
+              <h5>{{ producto.precio * cantidad | currency }}</h5>
+            </ion-text>
+            <!-- <ion-input type="text" disabled [value]="producto.precio"></ion-input> -->
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
     </ion-grid>
     <ion-grid fixed>
-        <ion-row>
-          <ion-col size="6">
-            <ion-button (click)="cancelarPedido()" color="danger">
-              Cancelar
-            </ion-button>
-          </ion-col>
-          <ion-col size="6">
-            <ion-button (click)="confirmarPedido()" color="tertiary" float-right>
-              Aceptar
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button (click)="cancelarPedido()" color="danger">
+            Cancelar
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button (click)="confirmarPedido()" color="tertiary" float-right [disabled]="validarFormulario()">
+            Aceptar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 
- 
+
 
 
 </ion-content>

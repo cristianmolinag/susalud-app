@@ -2,7 +2,7 @@
   <ion-toolbar color="warning">
     <ion-title>Pedidos activos</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button icon="arrow-back" defaultHref="categorias"></ion-back-button>
+      <ion-back-button icon="arrow-back" defaultHref="productos"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -15,16 +15,37 @@
         <ion-card>
           <ion-card-header>
             <ion-card-subtitle>{{ p.created_at }}</ion-card-subtitle>
-            <ion-card-title>{{ p.producto.articulo.nombre }}</ion-card-title>
+            <ion-card-title>{{ p.productos[0].nombre }}</ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            <p><strong>Talla: </strong>{{ p.producto.talla.nombre }}</p>
-            <p><strong>Material: </strong>{{ p.producto.material.nomber }}</p>
-            <p><strong>Color: </strong>{{ p.producto.color.nombre }}</p>
-            <p><strong>Estado: </strong> <ion-text color="tertiary">
-                <span> {{ p.estado }} </span> 
-            </ion-text> </p>
-          </ion-card-content>
+           <ion-card-content>
+             <ion-grid fixed>
+               <ion-row>
+                 <ion-col size="6">
+                   <p><strong>Talla: </strong>{{ p.tallas[0].nombre }}</p>
+                 </ion-col>
+                 <ion-col size="6">
+                   <p><strong>Material: </strong>{{ p.productos[0].material.nombre }}</p>
+                 </ion-col>
+                 <ion-col size="6">
+                   <p><strong>Color: </strong>{{ p.colores[0].nombre }}</p>
+                 </ion-col>
+                 <ion-col size="6">
+                   <p><strong>Cantidad: </strong>{{ p.cantidad }}</p>
+                 </ion-col>
+                 <ion-col size="6">
+                   <p><strong>Precio: </strong>{{ p.precio_unitario | currency }}</p>
+                 </ion-col>
+                 <ion-col size="6">
+                   <p><strong>Total: </strong>{{ p.precio_total | currency }}</p>
+                 </ion-col>
+                 <ion-col size="12">
+                   <p><strong>Estado: </strong> <ion-text color="tertiary">
+                        <span> {{ p.estado }} </span> 
+                    </ion-text> </p>
+                 </ion-col>
+               </ion-row>
+             </ion-grid>
+          </ion-card-content> 
         </ion-card>
       </ion-col>
     </ion-row>

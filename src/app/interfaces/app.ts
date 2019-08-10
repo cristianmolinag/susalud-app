@@ -59,20 +59,16 @@ export interface Articulo {
 
 export interface Producto {
     id: number;
+    nombre: string;
     imagen: string;
     precio: number;
     estado: boolean;
-    articulo_id: number;
-    articulo: Articulo;
-    color_id: number;
-    color: Color;
-    talla_id: number;
-    talla: Talla;
+    colores: Color[];
+    tallas: Talla[];
     material_id: number;
     material: Material;
     created_at?: Date;
     updated_at?: Date;
-    estado_pedido?: string;
 }
 
 export interface Pedido {

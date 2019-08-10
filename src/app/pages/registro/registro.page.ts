@@ -76,7 +76,7 @@ export class RegistroPage implements OnInit {
       });
       toast.present();
       this.storage.set('cliente_id', data.id);
-      this.router.navigate(['categorias']);
+      this.router.navigate(['productos']);
     });
   }
 }

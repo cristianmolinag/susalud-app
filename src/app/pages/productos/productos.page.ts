@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AppService } from 'src/app/services/app.service';
 import { Producto } from 'src/app/interfaces/app';
-import { AlertController, ToastController, ModalController } from '@ionic/angular';
+import { ToastController, ModalController, ActionSheetController } from '@ionic/angular';
 
 import { Storage } from '@ionic/storage';
 import { ModalPedidoPage } from '../modal-pedido/modal-pedido.page';
@@ -18,52 +18,27 @@ export class ProductosPage implements OnInit {
   productos: Producto[];
   clienteId: number;
 
-  constructor(private route: ActivatedRoute, private appService: AppService,
-    private alertCtrl: AlertController, private toastCtrl: ToastController,
-    private storage: Storage, private router: Router,
-    private modalCtrl: ModalController) {
+  constructor(private appService: AppService,
+              private toastCtrl: ToastController,
+              private storage: Storage, private router: Router,
+              private modalCtrl: ModalController,
+              private actionSheetCtrl: ActionSheetController) {
 
     this.storage.get('cliente_id').then((val) => {
       if (val) {
         this.urlImages = appService.urlImgProductos;
-        this.getProductos();
         this.clienteId = val;
+        this.getProductos();
       } else {
         this.router.navigate(['home']);
       }
     });
   }
 
-  async getMisPedidos() {
-    return new Promise((resolve) => {
-      this.appService.get(`/get_mis_pedidos/${this.clienteId}`).then((data: any) => {
-        resolve(data);
-      });
-    });
-  }
-
   async getProductos() {
-    this.route.paramMap.subscribe(params => {
-      if (params.has('id')) {
-        this.appService.get(`/get_productos/${params.get('id')}`).then((data: any) => {
-          if (!!data.data) {
-            this.productos = data.data;
-            this.productos.forEach(el => {
-              if (el.estado_pedido !== 'Pedido') {
-                el.estado_pedido = 'Comprar';
-              }
-            });
-
-            this.getMisPedidos().then((data: any) => {
-              if (data) {
-                data.forEach(element => {
-                  const index = this.productos.findIndex(x => x.id === element.id);
-                  this.productos[index].estado_pedido = 'Pedido';
-                });
-              }
-            });
-          }
-        });
+    this.appService.get(`/get_productos`).then((data: any) => {
+      if (!!data.data) {
+        this.productos = data.data;
       }
     });
   }
@@ -74,34 +49,71 @@ export class ProductosPage implements OnInit {
 
   async crearPedido(producto: Producto) {
 
-    if (producto.estado_pedido === 'Pedido') {
+    const modal = await this.modalCtrl.create({
+      component: ModalPedidoPage,
+      componentProps: {
+        producto
+      }
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+
+    if (!!data) {
       const toast = await this.toastCtrl.create({
-        message: `El producto ya se encuentra ordenado para producción`,
+        message: `Pedido realizado con exito`,
         duration: 2000
       });
       toast.present();
-    } else {
-
-      const modal = await this.modalCtrl.create({
-        component: ModalPedidoPage,
-        componentProps: {
-          producto
-        }
-      });
-
-      await modal.present();
-
-      const { data } = await modal.onDidDismiss();
-
-      if (!!data) {
-        const toast = await this.toastCtrl.create({
-          message: `Pedido realizado con exito`,
-          duration: 2000
-        });
-        toast.present();
-        this.getProductos();
-      }
+      this.getProductos();
     }
+
+  }
+
+  async opcionesUsuario() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Opciones del usuario',
+      buttons: [
+        {
+          text: 'Perfil',
+          icon: 'contact',
+          handler: () => {
+            this.router.navigate(['perfil']);
+          }
+        }, {
+          text: 'Cerrar sesion',
+          icon: 'exit',
+          handler: () => {
+            this.storage.remove('cliente_id').then();
+            this.router.navigate(['home']);
+          }
+        }
+      ]
+    });
+    await actionSheet.present();
+  }
+
+  async opcionesPedidos() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Opciones del pedidos',
+      buttons: [
+        {
+          text: 'Mis pedidos activos',
+          icon: 'card',
+          handler: () => {
+            this.router.navigate(['pedidos-activos']);
+          }
+        }, {
+          text: 'Historico de pedidos',
+          icon: 'calendar',
+          handler: () => {
+            this.router.navigate(['pedidos-historico']);
+          }
+        }
+      ]
+    });
+    await actionSheet.present();
   }
 
 

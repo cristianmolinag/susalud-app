@@ -33,6 +33,7 @@ export class PedidosActivosPage implements OnInit {
 
     this.appService.get('/get_mis_pedidos/' + this.clienteId).then((data: any) => {
       if (!!data) {
+        console.log(data);
         this.pedidos = data.filter((p: Pedido) => {
           return p.estado !== 'Facturado' && p.estado !== 'Cancelado';
         });

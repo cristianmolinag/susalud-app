@@ -14,6 +14,8 @@ export class ModalPedidoPage implements OnInit {
 
   @Input() producto: Producto;
   cantidad: number;
+  color_id: number;
+  talla_id: number;
   observaciones: string;
   urlImageProducto: string;
   cliente_id: number;
@@ -36,10 +38,13 @@ export class ModalPedidoPage implements OnInit {
       {
         producto_id: this.producto.id,
         cliente_id: this.cliente_id,
+        color_id: this.color_id,
+        talla_id: this.talla_id,
         observaciones: this.observaciones,
         cantidad: this.cantidad,
       })
       .then(async (data: any) => {
+        console.log(data);
         this.modalCtrl.dismiss({
           confirmado: true
         });
@@ -51,6 +56,13 @@ export class ModalPedidoPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  validarFormulario() {
+    if (this.cantidad && this.color_id && this.talla_id) {
+      return false;
+    }
+    return true;
   }
 
 }

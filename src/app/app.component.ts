@@ -29,7 +29,7 @@ export class AppComponent {
 
       this.storage.get('cliente_id').then((val) => {
         if (val) {
-          this.router.navigate(['categorias']);
+          this.router.navigate(['productos']);
         } else {
           this.router.navigate(['home']);
         }
