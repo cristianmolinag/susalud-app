@@ -14,8 +14,8 @@ export class ModalPedidoPage implements OnInit {
 
   @Input() producto: Producto;
   cantidad: number;
-  color_id: number;
-  talla_id: number;
+  color: string;
+  talla: string;
   observaciones: string;
   urlImageProducto: string;
   cliente_id: number;
@@ -37,9 +37,10 @@ export class ModalPedidoPage implements OnInit {
     this.appService.post('/crear_pedido',
       {
         producto_id: this.producto.id,
+        precio: this.producto.precio,
         cliente_id: this.cliente_id,
-        color_id: this.color_id,
-        talla_id: this.talla_id,
+        color: this.color,
+        talla: this.talla,
         observaciones: this.observaciones,
         cantidad: this.cantidad,
       })
@@ -59,7 +60,7 @@ export class ModalPedidoPage implements OnInit {
   }
 
   validarFormulario() {
-    if (this.cantidad && this.color_id && this.talla_id) {
+    if (this.cantidad && this.color && this.talla) {
       return false;
     }
     return true;

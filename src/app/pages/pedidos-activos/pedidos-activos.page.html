@@ -17,35 +17,37 @@
             <ion-card-subtitle>{{ p.created_at }}</ion-card-subtitle>
             <ion-card-title>{{ p.productos[0].nombre }}</ion-card-title>
           </ion-card-header>
-           <ion-card-content>
-             <ion-grid fixed>
-               <ion-row>
-                 <ion-col size="6">
-                   <p><strong>Talla: </strong>{{ p.tallas[0].nombre }}</p>
-                 </ion-col>
-                 <ion-col size="6">
-                   <p><strong>Material: </strong>{{ p.productos[0].material.nombre }}</p>
-                 </ion-col>
-                 <ion-col size="6">
-                   <p><strong>Color: </strong>{{ p.colores[0].nombre }}</p>
-                 </ion-col>
-                 <ion-col size="6">
-                   <p><strong>Cantidad: </strong>{{ p.cantidad }}</p>
-                 </ion-col>
-                 <ion-col size="6">
-                   <p><strong>Precio: </strong>{{ p.precio_unitario | currency }}</p>
-                 </ion-col>
-                 <ion-col size="6">
-                   <p><strong>Total: </strong>{{ p.precio_total | currency }}</p>
-                 </ion-col>
-                 <ion-col size="12">
-                   <p><strong>Estado: </strong> <ion-text color="tertiary">
-                        <span> {{ p.estado }} </span> 
-                    </ion-text> </p>
-                 </ion-col>
-               </ion-row>
-             </ion-grid>
-          </ion-card-content> 
+          <ion-card-content>
+            <ion-grid fixed>
+              <ion-row>
+                <ion-col size="6">
+                  <p><strong>Talla: </strong>{{ p.productos[0].pivot.talla }}</p>
+                </ion-col>
+                <ion-col size="6">
+                  <p><strong>Material: </strong>{{ p.productos[0].material.nombre }}</p>
+                </ion-col>
+                <ion-col size="6">
+                  <p><strong>Color: </strong>{{ p.productos[0].pivot.color }}</p>
+                </ion-col>
+                <ion-col size="6">
+                  <p><strong>Cantidad: </strong>{{ p.productos[0].pivot.cantidad }}</p>
+                </ion-col>
+                <ion-col size="6">
+                  <p><strong>Precio: </strong>{{ p.productos[0].pivot.precio_unitario | currency }}</p>
+                </ion-col>
+                <ion-col size="6">
+                  <p><strong>Total: </strong>{{ p.productos[0].pivot.precio_total | currency }}</p>
+                </ion-col>
+                <ion-col size="12">
+                  <p><strong>Estado: </strong>
+                    <ion-text color="tertiary">
+                      <span> {{ p.estado }} </span>
+                    </ion-text>
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>

@@ -12,8 +12,8 @@
         <ion-col>
           <ion-item lines="none">
             <ion-label position="fixed">Talla: </ion-label>
-            <ion-select placeholder="Seleccione una talla" [(ngModel)]="talla_id">
-                <ion-select-option *ngFor="let talla of producto.tallas" [value]="talla.id">{{ talla.nombre }}</ion-select-option>
+            <ion-select placeholder="Seleccione una talla" [(ngModel)]="talla">
+                <ion-select-option *ngFor="let talla of producto.tallas" [value]="talla.nombre">{{ talla.nombre }}</ion-select-option>
               </ion-select>
           </ion-item>
         </ion-col>
@@ -22,8 +22,8 @@
         <ion-col>
           <ion-item lines="none">
             <ion-label position="fixed">Color: </ion-label>
-            <ion-select placeholder="Seleccione un color" [(ngModel)]="color_id">
-              <ion-select-option *ngFor="let color of producto.colores" [value]="color.id">{{ color.nombre }}</ion-select-option>
+            <ion-select placeholder="Seleccione un color" [(ngModel)]="color">
+              <ion-select-option *ngFor="let color of producto.colores" [value]="color.nombre">{{ color.nombre }}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
